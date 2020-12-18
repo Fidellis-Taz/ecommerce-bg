@@ -3,6 +3,7 @@ const app = express();
 const bodyParser = require("body-parser");
 const env = require("dotenv");
 const mongoose = require("mongoose");
+const userRoutes = require("./routes/user");
 /* environment variable */
 env.config();
 
@@ -16,6 +17,7 @@ mongoose
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
+      useCreateIndex: true,
     }
   )
   .then(() => {
@@ -23,16 +25,7 @@ mongoose
   });
 
 /* routes */
-app.get("/", (req, res, next) => {
-  res.status(200).json({
-    message: "helloee from server ",
-  });
-});
-app.get("/data", (req, res, next) => {
-  res.status(200).json({
-    message: res.body,
-  });
-});
+app.use("/api", userRoutes);
 
 /* port */
 app.listen(process.env.PORT, () => {

@@ -22,6 +22,7 @@ mongoose
     console.log("db connected");
   });
 
+/* routes */
 app.get("/", (req, res, next) => {
   res.status(200).json({
     message: "helloee from server ",
@@ -33,6 +34,7 @@ app.get("/data", (req, res, next) => {
   });
 });
 
+/* port */
 app.listen(process.env.PORT, () => {
   console.log("server is running ");
 });
